@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { SignedIn  , SignedOut , SignInButton , UserButton} from '@clerk/nextjs';
 import { dark  , light} from '@clerk/themes';
-//import { User } from '@clerk/nextjs/dist/types/server';
+import { User } from '@clerk/nextjs/dist/types/server';
 
 export default function Header(){
     const path = usePathname();
