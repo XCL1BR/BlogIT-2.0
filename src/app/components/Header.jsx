@@ -5,6 +5,9 @@ import {AiOutlineSearch} from 'react-icons/ai';
 import {FaMoon , FaSun} from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
+import { SignedIn  , SignedOut , SignInButton , UserButton} from '@clerk/nextjs';
+import { dark  , light} from '@clerk/themes';
+//import { User } from '@clerk/nextjs/dist/types/server';
 
 export default function Header(){
     const path = usePathname();
@@ -32,16 +35,25 @@ export default function Header(){
             <div className='flex gap-2 md:order-2'>
                 <Button className='w-12 h-10 hidden sm:inline' color='gray' pill
                     onClick={()=> setTheme(theme === 'light' ? 'dark' : 'light')}
-                >
+                 >
                   
                    {theme === 'light' ? <FaSun /> : < FaMoon />}
                     
                 </Button>
-                <Link href='/sign-in'>
+                <SignedIn>
+                  <UserButton
+                  
+                  appearance={{ baseTheme: theme==='light' ? light : dark, }}
+                  /> 
+                  
+                </SignedIn>
+                <SignedOut>
+                   <Link href='/sign-in'>
                    <Button gradientDuoTone='purpleToBlue' outline>
-                    Sign In
+                   Sign-In
                    </Button>
-                </Link>
+                   </Link>
+                </SignedOut>
                 <Navbar.Toggle />
                 </div>
                 <Navbar.Collapse>
